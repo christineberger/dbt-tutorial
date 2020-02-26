@@ -25,7 +25,7 @@ Below are the answers to the solutions for the supplemental excercises from the 
   - The file stg_orders has an error. It found keyword "WITH" at line 8, character position 8. The line number in this instance wasn't particularly useful as my file's line was line 2. However, the location and filename, the syntax error stating it found something that should not be there ('WITH'), and the index at position 8 tells me where I can find the offending sql statement.
   
 ### Run only a single model at a time
-The command dbt run --models {{ model }} allowed me to run a single model. Here are the results:
+The command ```dbt run --models {{ model }}``` allowed me to run a single model. Here are the results:
 ```
 $ dbt run --models stg_customers
 
@@ -48,4 +48,4 @@ Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
 ### Group your models with a stg_ prefix into a staging subdirectory, configure your staging models to be views, and run only the staging models
 - models/staging contains the prefixed (stg_) files.
 - dbt_project.hyml contains the configuration for the staging models to be materialized as views.
-- Used the command dbt run staging.* to run all models under the staging subdirectory.
+- The command ```dbt run staging.*``` to run all models under the staging subdirectory.
