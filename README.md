@@ -1,7 +1,7 @@
-The files in this repository are a result of practicing the tutorial for dbt found at https://tutorial.getdbt.com/tutorial/. 
+### The files in this repository are a result of practicing the tutorial for dbt found at https://tutorial.getdbt.com/tutorial/. 
+Below are the answers to the solutions for the supplemental excercises from the tutorial:
 
-### These are the locations or information on the solutions for supplemental excercises from the tutorial:
-#### Build your first models
+### Excercise Set #1: Build your first models
 - Write some bad SQL to cause an error — can you debug this error?
   ```
   15:43:06 | Concurrency: 1 threads (target='dev')
