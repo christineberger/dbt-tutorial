@@ -1,5 +1,5 @@
-### The files in this repository are a result of practicing the tutorial for dbt found at https://tutorial.getdbt.com/tutorial/. 
-Below are the answers to the solutions for the supplemental excercises from the tutorial:
+### The files in this repository are a result of practicing the tutorial for dbt found at https://tutorial.getdbt.com/tutorial/.
+Below are the answers to the solutions for the supplemental excercises from the tutorial. Please note that these are my individual answers attempted on my own before watching the video walk-through of the additional exercises:
 
 ### Excercise Set #1: Build your first models
 - Write some bad SQL to cause an error — can you debug this error?
