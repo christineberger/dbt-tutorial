@@ -22,13 +22,30 @@ The files in this repository are a result of practicing the tutorial for dbt fou
 
   Done. PASS=2 WARN=0 ERROR=1 SKIP=0 TOTAL=3
   ```
-- Put models/staging contains the prefixed (stg_) files.
-- dbt_project.hyml contains the configuration for the staging modules.
-- Used the 
+  - The file stg_orders has an error. It found keyword "WITH" at line 8, character position 8. The line number in this instance wasn't particularly useful as my file's line was line 2. However, the location and filename, the syntax error stating it found something that should not be there ('WITH'), and the index at position 8 tells me where I can find the offending sql statement.
+  
+### Run only a single model at a time
+The command dbt run --models {{ model }} allowed me to run a single model. Here are the results:
+```
+$ dbt run --models stg_customers
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/overview)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](http://slack.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+Running with dbt=0.15.2
+Found 3 models, 9 tests, 0 snapshots, 0 analyses, 138 macros, 0 operations, 0 seed files, 0 sources
+
+15:56:25 | Concurrency: 1 threads (target='dev')
+15:56:25 | 
+15:56:25 | 1 of 1 START view model dbt_christine.stg_customers.................. [RUN]
+15:56:27 | 1 of 1 OK created view model dbt_christine.stg_customers............. [CREATE VIEW in 2.02s]
+15:56:27 | 
+15:56:27 | Finished running 1 view model in 3.14s.
+
+Completed successfully
+
+Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+
+```
+
+### Group your models with a stg_ prefix into a staging subdirectory, configure your staging models to be views, and run only the staging models
+- models/staging contains the prefixed (stg_) files.
+- dbt_project.hyml contains the configuration for the staging models to be materialized as views.
+- Used the command dbt run staging.* to run all models under the staging subdirectory.
