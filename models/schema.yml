@@ -7,6 +7,7 @@ sources:
     tables:
       - name: orders
       - name: customers
+      - name: payments
 
 models:
   - name: customers
