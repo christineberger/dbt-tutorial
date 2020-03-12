@@ -38,6 +38,7 @@ models:
           - unique
           - not_null
       - name: status
+        description: The current status of the order
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
@@ -55,3 +56,14 @@ models:
 
   - name: stg_payments
     description: '{{ doc("stg_payments") }}'
+    columns:
+        - name: payment_id
+          description: Primary key
+          tests:
+            - unique
+            - not_null
+        - name: payment_method
+          description: The method of payment used for the order
+          tests:
+            - accepted_values:
+                values: ['coupon','gift_card','credit_card','bank_transfer']
