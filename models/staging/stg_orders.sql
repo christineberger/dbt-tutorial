@@ -8,7 +8,7 @@ renamed as (
       user_id as customer_id,
       order_date,
       status,
-      sum(payments.amount)
+      sum(payments.amount) as total_amount
   from source
   left join {{ ref('stg_payments') }} as payments on source.id = payments.order_id
   group by 1, 2, 3, 4
