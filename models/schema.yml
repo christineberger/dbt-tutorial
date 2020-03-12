@@ -1,4 +1,13 @@
 version: 2
+
+sources:
+  - name:  shop
+    database: dbt-tutorial
+    schema: jaffle_shop
+    tables:
+      - name: orders
+      - name: customers
+
 models:
   - name: customers
     description: One record per customer which describes their aggregated order history.
