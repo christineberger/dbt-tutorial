@@ -62,6 +62,13 @@ models:
           tests:
             - unique
             - not_null
+        - name: order_id
+          description: References the orders table's id column.
+          tests:
+            - not_null
+            - relationships:
+                to: ref('stg_orders')
+                field: order_id
         - name: payment_method
           description: The method of payment used for the order
           tests:
