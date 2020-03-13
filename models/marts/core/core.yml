@@ -1,0 +1,14 @@
+version: 2
+
+models:
+- name: dim_customers
+  description: One record per customer which describes their aggregated order history.
+  columns:
+    - name: customer_id
+      description: Primary key - identifies each unique customer.
+      tests:
+        - unique
+        - not_null
+
+- name: fct_order_payment_method_amounts
+  description: One record per payment method of an order along with the amount.
