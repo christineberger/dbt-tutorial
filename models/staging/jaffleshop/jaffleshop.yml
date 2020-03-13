@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name:  shop
+    database: dbt-tutorial
+    schema: jaffle_shop
+    tables:
+      - name: orders
+      - name: customers
+      - name: payments
+
+models:
+  - name: stg_jaffleshop_customers
+    description: '{{ doc("stg_jaffleshop_customers") }}'
+
+    columns:
+      - name: customer_id
+        description: Primary key - identifies each unique customer.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_jaffleshop_orders
+    description: '{{ doc("stg_jaffleshop_orders") }}'
+    columns:
+      - name: order_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: The current status of the order
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              # values: ['shipped', 'completed', 'return_pending', 'returned']
+      - name: customer_id
+        description: >
+          Foreign key - identifies the unique customer who placed the order.
+          This is an example of a long-form description.
+          Sweet!
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_jaffleshop_customers')
+              field: customer_id
+
+  - name: stg_jaffleshop_payments
+    description: '{{ doc("stg_jaffleshop_payments") }}'
+    columns:
+        - name: payment_id
+          description: Primary key
+          tests:
+            - unique
+            - not_null
+        - name: order_id
+          description: References the orders table's id column.
+          tests:
+            - not_null
+            - relationships:
+                to: ref('stg_jaffleshop_orders')
+                field: order_id
+        - name: payment_method
+          description: The method of payment used for the order
+          tests:
+            - accepted_values:
+                values: ['coupon','gift_card','credit_card','bank_transfer']
